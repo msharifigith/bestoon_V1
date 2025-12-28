@@ -1,0 +1,121 @@
+{% extends 'parent/base.html' %}
+
+
+{#{% block contex %}#}
+{#    <form method="POST" style="">#}
+{#        {% csrf_token %}#}
+{#        نام#}
+{#        <input type="text" name="name">#}
+{#        <br>#}
+{#        نام خانوادگی#}
+{#        <input type="text" name="last_name">#}
+{#        <br>#}
+{#        تلفن#}
+{#        <input type="text" name="phone">#}
+{#        <br>#}
+{#        موضوع#}
+{#        <input type="text" name="subject">#}
+{#        <br>#}
+{#        متن#}
+{#        <input type="text" aria-multiline="true" name="maseg">#}
+{##}
+{##}
+{#    </form>#}
+{% block head %}
+
+    {#    {% block title %} comment{% endblock %}#}
+    <title>Comment Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .comment-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 400px;
+        }
+
+        .comment-box input, .comment-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .comment-box button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        .comment-box button:hover {
+            background-color: #218838;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            resize: vertical;
+            overflow-x: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block contex %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+
+            <h3>Leave a Comment</h3>
+
+            <input type="text" placeholder="First Name" name="name">
+            <input type="text" placeholder="Last Name" required name="last_name">
+            <input type="email" placeholder="Email" required name="email">
+            <input type="text" placeholder="Subject" required name="subject">
+            <textarea placeholder="Message" required name="masege"></textarea>
+            <input type="tel" placeholder="Phone Number" required name="phone">
+            <button type="submit" name="submit" value="submit">Submit</button>
+        </form>
+
+
+    </div>
+{% endblock %}

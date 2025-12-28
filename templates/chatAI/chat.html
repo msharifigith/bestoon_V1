@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chat with AI</h1>
+    <div id="chat-box">
+        <div id="messages"></div>
+        <textarea id="user-message" placeholder="Type your message here"></textarea>
+        <button id="send-message">Send</button>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#send-message').on('click', function(){
+                var message = $('#user-message').val();
+                $('#messages').append("<div>User: " + message + "</div>");
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'chat' %}",
+                    data: {
+                        'message': message,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response){
+                        $('#messages').append("<div>AI: " + response.response + "</div>");
+                        $('#user-message').val('');
+                    },
+                    error: function(){
+                        $('#messages').append("<div>Error: Unable to get a response from AI.</div>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

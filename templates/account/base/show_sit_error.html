@@ -1,0 +1,20 @@
+{% load static %}
+{% block heder %}
+    <title></title>
+{% endblock %}
+{% block contex %}
+    <h1>Error: {{ error }}</h1>
+    <p>Sorry, we encountered an issue trying to load the page.</p>
+
+    {% if error == "404" %}
+        <p>The page was not found (404). The URL might be incorrect.</p>
+    {% elif error == "403" %}
+        <p>Access to the page is forbidden (403). You might not have permission to view this page.</p>
+    {% elif error == "connection" %}
+        <p>There was an issue connecting to the external site. Please try again later.</p>
+    {% else %}
+        <p>Unknown error occurred. Please try again later.</p>
+    {% endif %}
+
+    <p>Go back to <a href="/">the homepage</a>.</p>
+{% endblock %}

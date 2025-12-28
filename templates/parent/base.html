@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+    <style>
+        body {
+
+        }
+    </style>
+
+</head>
+
+<body>
+{% include 'parent/header.html' %}
+{% block contex %}{% endblock %}
+{% include 'parent/footer.html' %}
+<script src="parent/teset.js">
+</script>
+</body>
+
+</html>
+
+

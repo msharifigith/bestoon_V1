@@ -1,0 +1,19 @@
+{% extends 'parent/base.html' %}
+{% block head %}
+    <title>User Panel</title>
+{% endblock %}
+
+{% block contex %}
+
+    <h1>Welcome, {{ user.username }}!</h1>
+
+    <p>Your email: {{ user.email }}</p>
+    <p>Profile info:</p>
+    <ul>
+        <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
+        <li>Profile Picture: <img src="{{ user.profile.picture.url }}" alt="Profile Picture" width="100"/></li>
+        <!-- If you have custom fields like bio or other info in a Profile model, show them here -->
+    </ul>
+
+    <a href="{% url 'account:logout' %}">Logout</a>
+{% endblock %}

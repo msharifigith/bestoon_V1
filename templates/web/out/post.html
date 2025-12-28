@@ -1,0 +1,64 @@
+{% extends 'parent/base.html' %}
+{#{% load static %}#}
+{% block head %}
+
+    <title>Post Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .post {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 0px;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .post-info {
+            margin-top: 15px;
+        }
+
+        .post-info span {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .share {
+            float: right;
+
+        }
+    </style>
+
+{% endblock %}
+
+{% block contex %}
+
+    <div class="post">
+        <img src='{{ post.image }}' alt="Post Image">
+        <div class="post-info">
+            <span><strong>Person:</strong> {{ post.person }}</span>
+            <span><strong>Time:</strong> {{ post.time }}</span>
+            <span><strong>Amount:</strong> {{ post.amount }}</span>
+        </div>
+        <div class="share">
+            <a href="{% url 'web:share' post.pk %}">
+                <img src="img/share.png" alt="share">
+            </a>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

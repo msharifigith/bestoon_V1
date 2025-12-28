@@ -1,0 +1,95 @@
+{% extends 'parent/base.html' %}
+
+
+{#{% block contex %}#}
+{#    <form method="POST" style="">#}
+{#        {% csrf_token %}#}
+{#        نام#}
+{#        <input type="text" name="name">#}
+{#        <br>#}
+{#        نام خانوادگی#}
+{#        <input type="text" name="last_name">#}
+{#        <br>#}
+{#        تلفن#}
+{#        <input type="text" name="phone">#}
+{#        <br>#}
+{#        موضوع#}
+{#        <input type="text" name="subject">#}
+{#        <br>#}
+{#        متن#}
+{#        <input type="text" aria-multiline="true" name="maseg">#}
+{##}
+{##}
+{#    </form>#}
+{% block head %}
+
+    {#    {% block title %} comment{% endblock %}#}
+    <title>Comment Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .comment-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 400px;
+        }
+
+        .comment-box input, .comment-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .comment-box button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        .comment-box button:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock %}
+
+{% block contex %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="comment-box">
+            <h3>Leave a Comment</h3>
+            <input type="text" placeholder="First Name"  name="name">
+            <input type="text" placeholder="Last Name" required  name="last_name">
+            <input type="email" placeholder="Email" required name="email">
+            <input type="text" placeholder="Subject" required name="subject">
+            <textarea placeholder="Message" required name="masege"></textarea>
+            <input type="tel" placeholder="Phone Number" required name="phone">
+            <button type="submit" name="submit" value="submit">Submit</button>
+        </div>
+    </form>
+    {% if form.errors %}
+        {% for field in form %}
+
+            {% for error in field.errors %}
+                {{ field.label }}: {{ error|escape }}
+            {% endfor %}
+
+        {% endfor %}
+    {% endif %}
+
+    {% if sent %}
+        <h1> send </h1>
+    {% else %}
+        <h1> not send </h1>
+    {% endif %}
+
+
+{% endblock %}

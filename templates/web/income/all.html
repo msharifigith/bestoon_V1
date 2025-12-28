@@ -1,0 +1,54 @@
+{% extends 'parent/base.html' %}
+{% block head %}
+    <title>all</title>
+    <style>
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+            color: lawngreen;
+        }
+        ul{
+            list-style-type: none;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+{% endblock %}
+
+
+{% block contex %}
+    <div class="container">
+        {% for posts in page_obj %}
+            {% csrf_token %}
+            <ul>
+                <li><a href='{% url 'web:post' posts.pk %}'>{{ posts.person }} {{ posts.amount }} income</a></li>
+            </ul>
+        {% endfor %}
+        <div>
+            <form action="{% url 'web:add' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">NEW_POST</button>
+            </form>
+        </div>
+
+        {% include 'parent/pagination.html' with page=page_obj %}
+        <br>
+    </div>
+
+{% endblock %}
+
+
+

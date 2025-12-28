@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ectend Management Group - Business Strategy, Consulting, and Global Solutions">
+    <title>About Us - Ectend Management Group</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section h1, h2, h3 {
+            color: #333;
+        }
+
+        section h1 {
+            font-size: 36px;
+        }
+
+        section h2 {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        section ul li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #1e90ff;
+            font-weight: bold;
+        }
+
+        header {
+            background-color: #005ED9; /* Green background */
+            color: white; /* White text */
+            padding: 20px;
+            text-align: center;
+        {#max-width: 600px;#} margin: auto;
+
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            background-color: #005ED9; /* Darker green on hover */
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Make Money Online</h1>
+    <nav>
+        <a href="{% url 'account:Home' %}">Home</a>
+        <a href="{% url 'account:login' %}">Login</a>
+        <a href="{% url 'account:About' %}">About</a>
+
+    </nav>
+</header>
+
+<section>
+    <h2>About Us</h2>
+    <p>Welcome to <span class="highlight">Ectend Management Group</span>, a leading global provider of management
+        consulting services. Founded in 2010, our company has been dedicated to helping businesses of all sizes improve
+        their operations, enhance their strategies, and achieve sustainable growth. With a team of experts, we combine
+        years of experience and a forward-thinking approach to drive success for our clients.</p>
+
+    <h3>Our Vision</h3>
+    <p>At Ectend, we believe that strong management is the foundation of every successful organization. Our vision is to
+        be the preferred partner for businesses looking to maximize their potential through effective management,
+        cutting-edge technology, and a tailored approach to strategic development.</p>
+
+    <h3>Our Services</h3>
+    <ul>
+        <li>Business Strategy & Development</li>
+        <li>Operational Efficiency & Process Improvement</li>
+        <li>Financial Consulting & Investment Strategy</li>
+        <li>Human Resources & Talent Management</li>
+        <li>Change Management & Organizational Transformation</li>
+        <li>Technology Integration & IT Solutions</li>
+    </ul>
+
+    <h3>Global Presence</h3>
+    <p>With offices in over 12 countries across North America, Europe, and Asia, Ectend Management Group has established
+        itself as a global leader in the consulting industry. Our expert team is always ready to assist you, no matter
+        where you are located.</p>
+
+    <h3>Our Income and Growth</h3>
+    <p>Since our founding, Ectend has experienced impressive growth. In 2023, our revenue exceeded <span
+            class="highlight">$250 million</span>. Our business model is diversified across several revenue streams,
+        ensuring financial stability and long-term growth:</p>
+    <ul>
+        <li><strong>Consulting Fees:</strong> We offer both fixed-fee contracts and hourly-based billing for strategic
+            consulting projects.
+        </li>
+        <li><strong>Equity Stakes:</strong> Through equity partnerships, we invest in select client ventures, sharing in
+            their success.
+        </li>
+        <li><strong>Performance-Based Bonuses:</strong> We reward excellence with success fees based on the measurable
+            impact we deliver for clients.
+        </li>
+        <li><strong>Licensing & Intellectual Property:</strong> We license our proprietary management methodologies and
+            frameworks to other businesses and institutions.
+        </li>
+    </ul>
+
+    <h3>Why Choose Ectend?</h3>
+    <p>At Ectend, we combine expertise, innovation, and dedication to deliver results that matter. Our tailored approach
+        ensures that we address the unique needs of each client, while our extensive experience allows us to navigate
+        even the most complex business challenges.</p>
+
+    <p><span class="highlight">Let's Build the Future Together.</span> Whether you're looking to optimize your current
+        operations or undergo a major organizational transformation, Ectend Management Group is here to help. Contact us
+        today to explore how we can assist you in achieving your business goals.</p>
+</section>
+<footer>{% include 'parent/footer.html' %}</footer>
+</body>
+</html>

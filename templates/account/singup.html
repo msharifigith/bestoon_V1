@@ -1,0 +1,72 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block head %}
+    <title>Sing Up</title>
+    <style>
+        /* General styling for the whole page */
+        body.green-bg {
+            background-color: #f0f9f4; /* Light green background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for centering the form */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading styling */
+        h2 {
+            color: #28a745; /* Green color */
+            text-align: center;
+        }
+
+        /* Form input styling */
+        form input, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;;
+        }
+
+
+        form input:focus, form button:focus {
+            outline: none;
+            border-color: #1e7e34; /* Darker green when focused */
+        }
+
+        form button {
+            background-color: #2780F5; /* Green button */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #2780F5; /* Darker green when hovered */
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block contex %}
+    <body class="green-bg">
+    <div class="container">
+        <h2>Create a New Account</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Sign Up</button>
+            {#            not use #}
+        </form>
+    </div>
+    </body>
+{% endblock %}

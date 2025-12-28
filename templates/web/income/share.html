@@ -1,0 +1,135 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block head %}
+    <title>Share Page via Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-to-post-list {
+            width: 40px;
+            height: 40px;
+            float: right;
+            margin: 10px 10px 0 0;
+        }
+
+        .post-image {
+            width: 100px;
+            height: 100px;
+        }
+
+        .post-info span {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .post {
+
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 0 20px 20px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+
+        .post-info {
+            margin-top: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+            overflow-x: hidden;
+        }
+    </style>
+{% endblock %}
+{% block contex %}
+    <div class="container">
+    {{ income_or_expend }}
+        <a href="
+                {% if income_or_expend == 'income' %}{% url 'web:income_all' %}{% else %}{% url 'web:out_all' %}{% endif %}"><img
+                src="../../../static/img/back.ico" alt="back to post list"
+                class="back-to-post-list"></a>
+
+        <div class="post">
+            <h1 style="size:35px; margin-top: 0;">share this page</h1>
+            <a href="/media/{{ post.image }}">
+                <div class="post-image"><img src="/media/{{ post.image }}" alt="Post Image"/></div>
+            </a>
+            <div class="post-info">
+                <span><strong>Person:</strong> {{ post.person }}</span>
+                <span><strong>Time:</strong> {{ post.time }}</span>
+                <span><strong>Amount:</strong> {{ post.amount }}</span>
+            </div>
+        </div>
+        <form method=post id="shareForm">
+            {% csrf_token %}
+
+            <input type="text" id="name" placeholder="Your Name" required name="name">
+            <input type="email" id="email" placeholder="to Email" required name="to">
+            <input type="text" id="subject" placeholder="Subject" required name="subject">
+            <textarea id="message" placeholder="Your Message" required name="massage"></textarea>
+            <input type="text" id="phone" placeholder="Your Phone Number" required name="phone">
+            {#            <textarea id="message" required name="url"#}
+            {#                      readonly>{{ request.get_host }}{% url 'web:post' pk=post.pk %}</textarea>#}
+            <button type="submit">Share via Email</button>
+        </form>
+    </div>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p> {{ error }} </p>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

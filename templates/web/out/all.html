@@ -1,0 +1,17 @@
+{% extends 'parent/base.html' %}
+{% block title %}all{% endblock %}
+
+{% block contex %}
+    {% for posts in page_obj %}
+        {% csrf_token %}
+        <ul>
+            <li><a href='{% url 'web:post' posts.pk %}'>{{ posts.person }} {{ posts.amount }} income</a></li>
+        </ul>
+    {% endfor %}
+
+    {% include 'parent/pagination.html' with page=page_obj %}
+    <br>
+{% endblock %}
+
+
+

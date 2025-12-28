@@ -1,0 +1,133 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block head %}
+
+    <title>Post Display</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .post {
+
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .post-info {
+            margin-top: 15px;
+        }
+
+        .post-info span {
+            display: block;
+            margin: 5px 0;
+        }
+
+
+        .back-to-post-list {
+            width: 40px;
+            height: 40px;
+
+
+        }
+
+        .post-image {
+            width: 100px;
+            height: 100px;
+        }
+
+        .delete-bt {
+            width: 40px;
+            height: 40px;
+        }
+
+
+        /* Focus styles for accessibility */
+        button:focus {
+            outline: 3px solid #ffa500; /* Orange outline on focus for accessibility */
+        }
+
+
+        /* Focus styles for accessibility */
+        button:focus {
+            outline: 3px solid #ffa500; /* Orange outline on focus */
+        }
+
+        button {
+            padding: 0px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .top-center {
+            display: flex;
+            float: right;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{% block contex %}
+
+    <div class="post">
+        <div class="top-center">
+            <a href="{% if income_or_expend == 'income' %}{% url 'web:income_share' pk=post.pk %}{% else %}{% url 'web:out_share' pk=post.pk %}{% endif %}">
+                <img src="{% static  'img/share_2.ico' %}" alt="Share on Email" class="back-to-post-list"/>
+            </a>
+
+            <form action="{% if income_or_expend == 'income' %}{% url 'web:income_delete' pk=post.pk %}{% else %}{% url 'web:out_delete' pk=post.pk %}{% endif %}" method="POST" style="width: 40px;height: 40px;">
+                {% csrf_token %}
+                <button type="submit"><img src="{% static 'img/Delete.ico' %}" alt="Delete" class="delete-bt">
+                </button>
+            </form>
+            <a href="{% if income_or_expend == 'income' %}{% url 'web:income_edit' pk=post.pk %}{% else %}{% url 'web:out_edit' pk=post.pk %}{% endif %}"><img src="../../../static/img/Edit.ico"
+                                                           alt="Edite"
+                                                           class="back-to-post-list"></a>
+
+            <a href="{% if income_or_expend == 'income' %}{% url 'web:income_all'  %}{% else %}{% url 'web:out_all' %}{% endif %}"><img src="../../../static/img/back.ico" alt="back to post list"
+                                                  class="back-to-post-list"></a>
+
+
+        </div>
+
+
+        <a href="/media/{{ post.image }}">
+            <div class="post-image"><img src="/media/{{ post.image }}" alt="Post Image"/></div>
+        </a>
+        <div class="post-info">
+            <span><strong>Person:</strong> {{ post.person }}</span>
+            <span><strong>Time:</strong> {{ post.time }}</span>
+            <span><strong>Amount:</strong> {{ post.amount }}</span>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
